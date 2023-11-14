@@ -87,8 +87,6 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-
-
 // Declaring variables
 let totalMonths = finances.length; // Total number of months
 let totalNet = 0;
