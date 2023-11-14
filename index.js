@@ -141,5 +141,26 @@ for ( // Starting from second month, this loops through the dataset and finds th
   if (profitDifference > greatestProfit) {
     greatestProfit = profitDifference;
     greatestProfitDate = currentMonth;
-  }
+  };
+};
+
+// Greatest loss
+let greatestLoss = 0;
+let greatestLossDate = null;
+let a = 0;
+
+for (
+  a = 1;
+  a < finances.length;
+  a++
+) {
+  currentProfit = finances[a][1];
+  oldProfit = finances[a - 1][1];
+  monthlyChange = oldProfit - currentProfit;
+  currentMonth = finances[a][0];
+
+  if (monthlyChange > greatestLoss) {
+    greatestLoss = monthlyChange;
+    greatestLossDate = currentMonth;
+  };
 };
