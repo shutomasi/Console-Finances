@@ -164,3 +164,11 @@ for (
     greatestLossDate = currentMonth;
   };
 };
+
+console.log("Financial Analysis");
+console.log("----------------------------");
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + totalNet);
+console.log("Average Change: " + average.toFixed(2));
+console.log("Greatest Increase in Profits/Losses: " + greatestProfitDate + " ($" + greatestProfit + ")");
+console.log("Greatest Decrease in Profits/Losses: " + greatestLossDate + " ($-" + greatestLoss + ")");
