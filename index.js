@@ -87,34 +87,42 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+
+
+// Declaring variables
 let totalMonths = finances.length; // Total number of months
-
-// Net profit/losses
-let totalNet = 0; 
+let totalNet = 0;
 let x = 0;
-
-for ( // Loops through data set and adds the profit/loss onto the 'totalNet' variable
-  x = 0;
-  x < finances.length;
-  x++
-) {
-  totalNet = totalNet + finances[x][1];
-};
-
-// Average changes in profit/losses
 let totalChange = 0;
 let y = 0;
 let currentProfit = 0;
 let profitDifference = 0;
 let oldProfit = finances[0][1];
 let average = 0;
+let greatestProfit = 0;
+let greatestProfitDate = null;
+let z = 0;
+let currentMonth = null;
+let greatestLoss = 0;
+let greatestLossDate = null;
+let a = 0;
 
+// Total profit/loss
+for ( // Loops through data set and adds the profit/loss onto the 'totalNet' variable
+  x = 0;
+  x < finances.length;
+  x++
+) {
+  totalNet = totalNet + finances[x][1]; // 'x' refers to iteration, '1' refers to which part of the dataset, in this case '0' refers to the date and '1' refers to the profit/loss
+};
+
+// Average changes in profit/loss
 for ( // Starting from the second month, this loops through the dataset and finds the difference in profit/loss between the current and previous month. The value is then added to the 'totalChange' variable
   y = 1;
   y < finances.length;
   y++
 ) {
-  currentProfit = finances[y][1]; 
+  currentProfit = finances[y][1];
   profitDifference = currentProfit - oldProfit;
   totalChange = totalChange + profitDifference;
   oldProfit = currentProfit;
@@ -122,13 +130,8 @@ for ( // Starting from the second month, this loops through the dataset and find
 
 average = totalChange / (totalMonths - 1); // Finds average change over total number of months
 
-// Greatest profit
-let greatestProfit = 0;
-let greatestProfitDate = null;
-let z = 0;
-let currentMonth = null;
-
-for ( // Starting from second month, this loops through the dataset and finds the month with the largest profit
+// Greatest increase in profits
+for ( // Starting from second month, this loops through the dataset and finds the month with the largest profit. It then saves values to their relevant variables, ready to output
   z = 1;
   z < finances.length;
   z++
@@ -138,37 +141,34 @@ for ( // Starting from second month, this loops through the dataset and finds th
   profitDifference = currentProfit - oldProfit;
   currentMonth = finances[z][0];
 
-  if (profitDifference > greatestProfit) {
+  if (profitDifference > greatestProfit) { // If the profit difference is greater than the current greatestProfit then it will update the amount and date.
     greatestProfit = profitDifference;
     greatestProfitDate = currentMonth;
   };
 };
 
-// Greatest loss
-let greatestLoss = 0;
-let greatestLossDate = null;
-let a = 0;
-
-for (
+// Greatest decrease in losses
+for ( // Starting from second month, this loops through the dataset and finds the month with the largest loss. It then saves values to their relevant variables, ready to output
   a = 1;
   a < finances.length;
   a++
 ) {
   currentProfit = finances[a][1];
   oldProfit = finances[a - 1][1];
-  monthlyChange = oldProfit - currentProfit;
+  profitDifference = oldProfit - currentProfit;
   currentMonth = finances[a][0];
 
-  if (monthlyChange > greatestLoss) {
-    greatestLoss = monthlyChange;
+  if (profitDifference > greatestLoss) { // If the profit difference is less than the current greatestLoss then it will update the amount and date.
+    greatestLoss = profitDifference;
     greatestLossDate = currentMonth;
   };
 };
 
+// Console output
 console.log("Financial Analysis");
 console.log("----------------------------");
 console.log("Total Months: " + totalMonths);
 console.log("Total: $" + totalNet);
-console.log("Average Change: " + average.toFixed(2));
+console.log("Average Change: " + average.toFixed(2)); // .toFixed(2) rounds to 2 decimal points
 console.log("Greatest Increase in Profits/Losses: " + greatestProfitDate + " ($" + greatestProfit + ")");
 console.log("Greatest Decrease in Profits/Losses: " + greatestLossDate + " ($-" + greatestLoss + ")");
