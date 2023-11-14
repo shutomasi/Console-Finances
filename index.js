@@ -86,3 +86,38 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+let totalMonths = finances.length; // Total number of months
+
+// Net profit/losses
+let totalNet = 0; 
+let x = 0;
+
+for ( // Loops through data set and adds the profit/loss onto the 'totalNet' variable
+  x = 0;
+  x < finances.length;
+  x++
+) {
+  totalNet = totalNet + finances[x][1];
+};
+
+// Average changes in profit/losses
+let totalChange = 0;
+let y = 0;
+let currentProfit = 0;
+let profitDifference = 0;
+let oldProfit = finances[0][1];
+let average = 0;
+
+for ( // Starting from the second month, this loops through the dataset and finds the difference in profit/loss between the current and previous month. The value is then added to the 'totalChange' variable
+  y = 1;
+  y < finances.length;
+  y++
+) {
+  currentProfit = finances[y][1]; 
+  profitDifference = currentProfit - oldProfit;
+  totalChange = totalChange + profitDifference;
+  oldProfit = currentProfit;
+};
+
+average = totalChange / (totalMonths - 1); // Finds average change over total number of months
