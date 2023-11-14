@@ -121,3 +121,25 @@ for ( // Starting from the second month, this loops through the dataset and find
 };
 
 average = totalChange / (totalMonths - 1); // Finds average change over total number of months
+
+// Greatest profit
+let greatestProfit = 0;
+let greatestProfitDate = null;
+let z = 0;
+let currentMonth = null;
+
+for ( // Starting from second month, this loops through the dataset and finds the month with the largest profit
+  z = 1;
+  z < finances.length;
+  z++
+) {
+  currentProfit = finances[z][1];
+  oldProfit = finances[z - 1][1];
+  profitDifference = currentProfit - oldProfit;
+  currentMonth = finances[z][0];
+
+  if (profitDifference > greatestProfit) {
+    greatestProfit = profitDifference;
+    greatestProfitDate = currentMonth;
+  }
+};
